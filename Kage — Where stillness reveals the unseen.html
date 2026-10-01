@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kage — Where stillness reveals the unseen</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500&display=swap">
+<style>
+:root{--bg:#0b0807;--ink:#efe6df;--mute:#a99c93;--red:#e0231c;--line:rgba(239,230,223,.16);
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0807}}
+:root[data-theme="dark"]{--bg:#0b0807}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Onest,system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.7}
+h1,h2,h3{font-weight:400;letter-spacing:-.012em;line-height:1.1;margin:0}
+h1{font-size:clamp(40px,8vw,96px)}
+h2{font-size:clamp(30px,4.6vw,46px);max-width:18ch}
+h3{font-size:22px}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--red);outline-offset:4px}
+#gl{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+#load{position:fixed;inset:0;z-index:20;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:opacity .9s}
+#load b{color:var(--red);font-weight:400}
+header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:18px clamp(18px,4vw,48px)}
+.logo{font-weight:500;letter-spacing:.2em}
+nav{display:flex;gap:22px;font-size:14px;flex-wrap:wrap;justify-content:flex-end}
+nav span{color:var(--mute);margin-left:6px}
+main{position:relative;z-index:1}
+section{min-height:100vh;padding:14vh clamp(18px,6vw,96px);display:flex;flex-direction:column;justify-content:center;gap:28px}
+.hero{align-items:flex-start;justify-content:flex-end;padding-bottom:12vh}
+.sub{max-width:44ch;color:var(--ink)}
+.cue{color:var(--mute);font-size:14px}
+p{max-width:60ch;margin:0}
+.panel{background:rgba(11,8,7,.62);backdrop-filter:blur(6px);padding:clamp(20px,4vw,44px);border-left:2px solid var(--red);max-width:640px}
+.cta{display:inline-block;align-self:flex-start;border:1px solid var(--red);padding:12px 24px;transition:background .25s}
+.cta:hover{background:var(--red)}
+.stats{display:flex;gap:36px;flex-wrap:wrap}
+.stats div{font-size:14px;color:var(--mute)}
+.stats b{display:block;font-size:34px;font-weight:400;color:var(--ink)}
+.tabs{display:flex;gap:10px;flex-wrap:wrap}
+.tabs button{font:inherit;color:var(--ink);background:none;border:1px solid var(--line);padding:10px 18px;cursor:pointer}
+.tabs button[aria-selected="true"]{border-color:var(--red);background:rgba(224,35,28,.18)}
+.tabs button:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+ol{list-style:none;margin:0;padding:0;max-width:760px}
+li{display:grid;grid-template-columns:48px 1fr auto;gap:16px;padding:22px 0;border-top:1px solid var(--line);align-items:baseline}
+li:last-child{border-bottom:1px solid var(--line)}
+li p{color:var(--mute);font-size:15px;grid-column:2}
+li em{font-style:normal;color:var(--mute);font-size:14px}
+.jp{color:var(--mute);font-size:.7em;margin-left:10px}
+footer{position:relative;z-index:1;background:var(--bg);padding:48px clamp(18px,6vw,96px);display:flex;gap:48px;flex-wrap:wrap;justify-content:space-between;font-size:14px;color:var(--mute);border-top:1px solid var(--line)}
+footer ul{list-style:none;margin:8px 0 0;padding:0}
+footer li{display:block;border:0;padding:3px 0}
+@media (max-width:640px){nav span{display:none}li{grid-template-columns:32px 1fr}li em{grid-column:2}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<div id="load" role="status"><span>Raising the mountain temple</span><b id="pct">0%</b></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<header>
+  <a class="logo" href="#top">KAGE</a>
+  <nav><a href="#gate">Temples<span>伽藍</span></a><a href="#gardens">Gardens<span>庭園</span></a><a href="#lessons">Rituals<span>神事</span></a><a href="#after">Afterlight<span>残光</span></a></nav>
+</header>
+<main id="top">
+  <section class="hero" id="hero">
+    <p class="cue">The Hidden Gate · 影の道</p>
+    <h1>Where stillness<br>reveals the unseen.</h1>
+    <p class="sub">Enter Kyoto through its quiet thresholds, where ritual, craft, and memory shape the path.</p>
+    <a class="cta" href="#gate">Enter the gate</a>
+  </section>
+
+  <section id="gate">
+    <div class="panel">
+      <h2>Charred cypress, worn stone, one gate left open.</h2>
+      <p style="margin-top:20px">Kage begins where the city stops: a mountain gate of cedar burned black, standing in its own weather. The soot is how a board is taught to survive a hundred rainy seasons.</p>
+      <p style="margin-top:14px">Climb the worn steps and the worship hall lifts out of the mist, its paper screens lit from inside. Above the eaves a vermilion moon holds its place. Nothing here is in a hurry.</p>
+      <div class="stats" style="margin-top:28px"><div><b>5</b>Chapters</div><div><b>92</b>Minutes</div><div><b>1611</b>Hall raised</div></div>
+    </div>
+  </section>
+
+  <section id="gardens">
+    <div class="panel">
+      <h2>Still gardens<span class="jp">庭園</span></h2>
+      <div class="tabs" role="tablist" style="margin:22px 0">
+        <button role="tab" aria-selected="true" data-i="0">Approach</button>
+        <button role="tab" aria-selected="false" data-i="1">Lanterns</button>
+        <button role="tab" aria-selected="false" data-i="2">Moonwater</button>
+      </div>
+      <p id="tabtext" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section id="lessons">
+    <h2>Five chapters. Ninety minutes. One quiet mind.</h2>
+    <ol>
+      <li><span>01</span><h3>The Hidden Gate<span class="jp">山門</span></h3><em>14 min</em><p>Why a gate is a sentence, and what you agree to when you walk under one.</p></li>
+      <li><span>02</span><h3>Borrowed Scenery<span class="jp">借景</span></h3><em>18 min</em><p>Shakkei: composing with a mountain you will never own.</p></li>
+      <li><span>03</span><h3>Charred Cypress<span class="jp">焼杉</span></h3><em>21 min</em><p>Yakisugi: burning a board black so the weather will let it live.</p></li>
+      <li><span>04</span><h3>Lantern Light<span class="jp">灯籠</span></h3><em>17 min</em><p>How a single ember decides the scale of everything around it.</p></li>
+      <li><span>05</span><h3>The Vermilion Moon<span class="jp">朱月</span></h3><em>22 min</em><p>Why the moon burns red over the valley, and what the garden does with it.</p></li>
+    </ol>
+  </section>
+
+  <section id="after">
+    <h2>Afterlight</h2>
+    <p>The gate does not close behind you. Take the walk whenever the noise gets loud. It is always the same path, and never the same light.</p>
+    <a class="cta" href="#top">Begin the walk</a>
+  </section>
+</main>
+<footer>
+  <div>© 2026 Kage<br>Kage no Michi · 静けさは一つの技である</div>
+  <div>Chapters<ul><li><a href="#gate">The Sanmon</a></li><li><a href="#gardens">Still Gardens</a></li><li><a href="#lessons">Sacred Craft</a></li><li><a href="#after">Afterlight</a></li></ul></div>
+  <div>WebGL · Onest · Kyoto</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+var texts=["The long climb. Worn steps rise through cedar and mist toward a gate left open.","Lantern court. A single ember decides the scale of everything around it.","The wet court. The vermilion moon sits in still water, patient and half hidden."];
+var tt=document.getElementById('tabtext'),tabs=document.querySelectorAll('.tabs button');
+function setTab(i){tabs.forEach(function(b,k){b.setAttribute('aria-selected',k==i)});tt.textContent=texts[i]}
+tabs.forEach(function(b){b.addEventListener('click',function(){setTab(+b.dataset.i)})});setTab(0);
+
+var load=document.getElementById('load'),pct=document.getElementById('pct');
+function done(){var n=0;var t=setInterval(function(){n+=8;pct.textContent=Math.min(n,100)+'%';if(n>=100){clearInterval(t);load.style.opacity=0;setTimeout(function(){load.style.display='none'},900)}},40)}
+if(!window.THREE){load.style.display='none';return}
+
+var cv=document.getElementById('gl'),r=new THREE.WebGLRenderer({canvas:cv,antialias:true});
+r.setPixelRatio(Math.min(devicePixelRatio,2));
+var sc=new THREE.Scene();sc.background=new THREE.Color(0x0b0807);sc.fog=new THREE.Fog(0x0b0807,20,120);
+var cam=new THREE.PerspectiveCamera(55,1,.1,300);
+// moon with glow
+var moon=new THREE.Mesh(new THREE.SphereGeometry(7,48,48),new THREE.MeshBasicMaterial({color:0xe0231c,fog:false}));
+moon.position.set(14,26,-110);sc.add(moon);
+var c=document.createElement('canvas');c.width=c.height=256;var x=c.getContext('2d'),g=x.createRadialGradient(128,128,10,128,128,128);
+g.addColorStop(0,'rgba(224,35,28,.55)');g.addColorStop(1,'rgba(224,35,28,0)');x.fillStyle=g;x.fillRect(0,0,256,256);
+var glow=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),transparent:true,depthWrite:false,fog:false}));
+glow.scale.set(60,60,1);glow.position.copy(moon.position);sc.add(glow);
+// ridges
+var ridges=[];
+for(var k=0;k<6;k++){
+  var z=-95+k*17,w=240,gm=new THREE.PlaneGeometry(w,60,120,1),p=gm.attributes.position;
+  for(var i=0;i<p.count;i++){var px=p.getX(i);if(p.getY(i)>0){var h=8+k*1.5+Math.sin(px*.05+k*2)*7+Math.sin(px*.13+k)*3.5+Math.sin(px*.31+k*3)*1.2;p.setY(i,h)}else p.setY(i,-30)}
+  gm.computeVertexNormals();
+  var sh=.05+k*.012;
+  var m=new THREE.Mesh(gm,new THREE.MeshBasicMaterial({color:new THREE.Color(sh+.04,sh*.7,sh*.65)}));
+  m.position.set(0,-9,z);sc.add(m);ridges.push(m);
+}
+// gate (torii-like silhouette)
+var dark=new THREE.MeshBasicMaterial({color:0x050303});
+function box(a,b,c2,px,py,pz){var m=new THREE.Mesh(new THREE.BoxGeometry(a,b,c2),dark);m.position.set(px,py,pz);sc.add(m)}
+box(1,14,1,-6,-2,-12);box(1,14,1,6,-2,-12);box(18,1.2,1.6,0,6.2,-12);box(15,.8,1,0,3.8,-12);
+// embers
+var N=500,pos=new Float32Array(N*3),vel=[];
+for(var j=0;j<N;j++){pos[j*3]=(Math.random()-.5)*60;pos[j*3+1]=Math.random()*30-8;pos[j*3+2]=-Math.random()*90;vel.push(.01+Math.random()*.03)}
+var pg=new THREE.BufferGeometry();pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
+var pts=new THREE.Points(pg,new THREE.PointsMaterial({color:0xff5a3c,size:.28,transparent:true,opacity:.7,depthWrite:false}));sc.add(pts);
+
+function size(){var w=innerWidth,h=innerHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+addEventListener('resize',size);size();
+var prog=0,tgt=0,mx=0,my=0,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function sp(){var d=document.documentElement.scrollHeight-innerHeight;tgt=d>0?scrollY/d:0}
+addEventListener('scroll',sp,{passive:true});sp();
+addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5});
+function frame(t){
+  prog+=(tgt-prog)*.06;
+  cam.position.set(mx*3+Math.sin(prog*3)*2,2+prog*3-my*1.5,28-prog*34);
+  cam.lookAt(mx*2,6+prog*4,-60);
+  moon.position.y=26+prog*6;glow.position.copy(moon.position);
+  if(!reduce){var a=pg.attributes.position;for(var j=0;j<N;j++){var y=a.getY(j)+vel[j];if(y>24)y=-8;a.setY(j,y);a.setX(j,a.getX(j)+Math.sin(t*.0005+j)*.004)}a.needsUpdate=true}
+  r.render(sc,cam);requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);done();
+})();
+</script>
+</body>
+</html>
